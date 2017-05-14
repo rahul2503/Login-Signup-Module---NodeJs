@@ -4,7 +4,7 @@ var router = express.Router();
 module.exports = router;
 
 var mongo = require('mongodb');
-var uri = 'mongodb://gpa1:gpa1@ds139791.mlab.com:39791/gpa_task_2';
+var uri = 'mongodb://<dbuser>:<dbpswrd>@ds139791.mlab.com:39791/gpa_task_2';
 
 module.exports.insert = function(collectionName, json, callback) {
 	mongo.MongoClient.connect(uri, function(err, db) {
