@@ -1,0 +1,19 @@
+{
+  "name": "gpa_task_2",
+  "version": "1.0.0",
+  "description": "NodeJs Task 2 for GPA Group",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahul Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "html": "^1.0.0",
+    "mongodb": "^2.2.26",
+    "path": "^0.12.7"
+  }
+}

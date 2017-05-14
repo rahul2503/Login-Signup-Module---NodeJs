@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GPA Task Home</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+
+	<script>
+		function onload() {
+			$.get('getUsername').done(function(res) {
+				console.log(res);
+				if (res.success) {
+					document.getElementById('session').innerHTML = 	'Welcome <b>'+res.username+'!</b> You are now logged in, Have a Nice Day.';
+				} else {
+					location.href = '/';
+				}
+			})
+		}
+
+		function logout() {
+			$.get('/logout').done(function(res) {
+				if (res.success) {
+					location.href = '/';
+				} else {
+					location.href = '/home';
+				}
+			});
+		}
+	</script>
+	<style type="text/css">
+		/* Set a style for all buttons */
+	    button {
+	        background-color: #4CAF50;
+	        color: white;
+	        padding: 14px 20px;
+	        margin: 8px 0;
+	        border: none;
+	        cursor: pointer;
+	        width: 25%;
+	    }
+
+	    /* Add a hover effect for buttons */
+	    button:hover {
+	        opacity: 0.8;
+	    }
+
+	    .container {
+        	padding: 16px;
+        	width: 500px;
+    	}
+	</style>
+</head>
+<body onload="onload()">
+    <div class="container">
+    	<div id="session" align="center"></div>
+    	<div align="center">
+    		<button type="button" onclick="logout()">Logout</button>
+	    </div>
+    </div>
+</body>
+</html>

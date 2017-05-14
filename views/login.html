@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>GPA Task Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    
+
+    /* Full-width inputs */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    /* Set a style for all buttons */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    /* Add a hover effect for buttons */
+    button:hover {
+        opacity: 0.8;
+    }
+
+    /* Extra style for the cancel button (red) */
+    .reset {
+        width: auto;
+        padding: 5px 5px;
+        background-color: red;
+    }
+
+    /* Avatar image */
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    /* Add padding to containers */
+    .container {
+        padding: 16px;
+        width: 500px;
+    }
+
+    /* The "Forgot password" text */
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form>
+
+      <div id="check" align="center"></div>
+      <label><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required />
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required />
+
+      <div class="row">
+        <div class="col-sm-6">
+          <button type="button" onclick="login()">Login</button>
+        </div>
+
+        <div class="col-sm-6">
+          <button type="button" onclick="register()">Register</button>
+        </div>
+      </div>
+    </form>
+
+    <span class="psw"><button class="reset" onclick="reset()">Reset password?</button></span>
+  </div>
+
+  <script>
+    function login() {
+      console.log('login');
+
+      var form_data = {};
+      $('form').find("input[name]").each(function (index, node) {
+        form_data[node.name] = node.value;
+        console.log(form_data);
+      });
+
+      $.post('/login', form_data).done(function(res) {
+        console.log(res);
+        if (res.success) {
+          location.href = '/home';
+        } else {
+          document.getElementById('check').innerHTML = res.reason;
+        }
+      });
+    }
+
+    function register() {
+      $.get('/register', function(res) {
+        location.href = '/register';
+      });
+    }
+    
+    function reset() {
+      $.get('/resetPassword', function(res) {
+        location.href = '/resetPassword';
+      });
+    }
+
+
+  </script>
+</body>  
+</html>
+  
